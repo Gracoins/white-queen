@@ -2,12 +2,12 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>White Queen Salon — Kuaför &amp; Güzellik Salonu · Gazi Mustafa Kemal Bulvarı, Gazimağusa</title>
-<meta name="description" content="White Queen Salon — Gazi Mustafa Kemal Bulvarı, Gazimağusa. Gazimağusa'da saç, tırnak ve kalıcı makyaj — hepsi tek çatı altında, uluslararası ödüllü ellerde. Randevu için WhatsApp'tan yazabilirsiniz.">
-<meta property="og:title" content="White Queen Salon — Gazi Mustafa Kemal Bulvarı, Gazimağusa">
-<meta property="og:description" content="Gazimağusa'da saç, tırnak ve kalıcı makyaj — hepsi tek çatı altında, uluslararası ödüllü ellerde.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>White Queen Salon — Gazimağusa · Saç, Tırnak & Kalıcı Makyaj</title>
+<meta name="description" content="Gazimağusa'da saç tasarımı, tırnak ve kalıcı makyaj tek çatı altında. Uluslararası ödüllü kalıcı makyaj uygulamaları, gelin saçı ve makyajı. WhatsApp'tan randevu.">
 <meta property="og:type" content="website">
+<meta property="og:title" content="White Queen Salon — Gazimağusa">
+<meta property="og:description" content="Saç, tırnak ve kalıcı makyaj — hepsi tek çatı altında, uluslararası ödüllü ellerde.">
 <meta property="og:url" content="https://gracoins.github.io/white-queen/">
 <meta property="og:image" content="https://gracoins.github.io/white-queen/og.png">
 <meta property="og:image:width" content="1200">
@@ -15,320 +15,614 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+/* ─────────────────────────  TOKENS  ───────────────────────── */
 :root{
-  --dark:#10131a; --dark-2:#1b202b; --mid:#3c4658;
-  --gold:#9fb4d4; --gold-lt:#c6d5ea; --accent:#6f8bb5;
-  --cream:#f6f7f9; --cream-2:#eceff4; --sand:#dde2ea;
-  --muted:#69707d; --line:#dde1e8;
-  --d:'Cormorant Garamond',Georgia,serif; --b:'Jost',system-ui,sans-serif;
-  --ease:cubic-bezier(.19,1,.22,1);
+  --ink:#0F1115; --ink-2:#161A21; --ink-3:#1E232B;
+  --porcelain:#F7F6F3; --porcelain-2:#EFEDE7; --shell:#E6E3DC;
+  --silver:#A7ADB8; --platinum:#C9CFD8; --champagne:#C4A87C; --champagne-lt:#E0CDAC;
+  --muted:#71767F; --muted-lt:rgba(247,246,243,.62);
+  --hair-d:rgba(247,246,243,.10);   /* koyu zeminde saç teli çizgi */
+  --hair-l:rgba(15,17,21,.07);      /* açık zeminde saç teli çizgi */
+  --d:'Fraunces',Georgia,serif; --b:'Plus Jakarta Sans',system-ui,sans-serif;
+  --ez:cubic-bezier(.32,.72,0,1);
+  --pad:clamp(6rem,11vw,10.5rem);   /* py-24 → py-40 karşılığı */
+  --gut:clamp(1.15rem,5vw,3.5rem);
+  --amb:0 24px 70px -30px rgba(15,17,21,.28), 0 6px 24px -18px rgba(15,17,21,.18);
+  --amb-d:0 30px 90px -34px rgba(0,0,0,.85);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--cream);color:var(--dark);font-family:var(--b);font-weight:300;
-  font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-h1,h2,h3,.d{font-family:var(--d);font-weight:400;letter-spacing:-.01em;line-height:1.15}
-img{max-width:100%;display:block}
-a{color:inherit}
-.w{width:min(1160px,92vw);margin:0 auto}
-.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.rv.in{opacity:1;transform:none}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--porcelain);color:var(--ink);font-family:var(--b);font-weight:300;
+  line-height:1.62;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.w{width:min(1240px,100% - var(--gut)*2);margin-inline:auto}
 
-/* ── header ── */
-header{position:fixed;top:0;left:0;right:0;z-index:60;padding:20px 0;transition:.45s var(--ease)}
-header.s{background:rgba(246,247,249,.94);backdrop-filter:blur(14px);
-  padding:12px 0;box-shadow:0 1px 0 var(--line)}
-.hrow{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{font-family:var(--d);font-size:1.32rem;letter-spacing:.03em;color:var(--cream);transition:.45s var(--ease);
-  display:inline-block;padding:6px 0;margin:-6px 0}
-header.s .logo{color:var(--dark)}
-nav{display:flex;gap:30px;font-size:.83rem;letter-spacing:.1em;text-transform:uppercase}
-nav a{color:rgba(255,255,255,.86);text-decoration:none;transition:.3s}
-header.s nav a{color:var(--muted)}
-nav a:hover{color:var(--gold)}
-.hcta{border:1px solid rgba(255,255,255,.5);color:#fff;padding:9px 22px;border-radius:100px;
-  font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:.35s}
-header.s .hcta{border-color:var(--gold);color:var(--gold)}
-.hcta:hover{background:var(--gold);border-color:var(--gold);color:#fff}
-.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;
-  padding:15px 12px;margin:-15px -12px;justify-content:center}
-.burger i{width:24px;height:1.5px;background:#fff;display:block;transition:.3s}
-header.s .burger i{background:var(--dark)}
+/* film grain — sabit, tıklama geçirmez */
+.grain{position:fixed;inset:0;z-index:5;pointer-events:none;opacity:.038;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* ── hero ── */
-.hero{min-height:100svh;display:grid;place-items:center;position:relative;text-align:center;
-  background:linear-gradient(160deg,var(--dark) 0%,var(--dark-2) 55%,var(--mid) 100%);
-  color:var(--cream);padding:120px 0 80px;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;opacity:.5;
-  background:radial-gradient(ellipse at 22% 18%,rgba(159,180,212,.3),transparent 55%),
-             radial-gradient(ellipse at 82% 78%,rgba(111,139,181,.24),transparent 58%)}
-.hero>*{position:relative;z-index:2}
-.hkicker{font-size:.75rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:26px}
-.hero h1{font-size:clamp(2.7rem,8vw,5.4rem);margin-bottom:20px}
-.hero h1 em{font-style:italic;color:var(--gold-lt)}
-.hsub{font-size:clamp(1rem,2.1vw,1.16rem);color:rgba(255,255,255,.8);max-width:600px;
-  margin:0 auto 20px;font-weight:300}
-.stars{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.24);
-  border-radius:100px;padding:9px 20px;font-size:.86rem;color:rgba(255,255,255,.9);margin-bottom:34px}
-.stars b{color:var(--gold-lt);font-weight:600}
-.hbtns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:16px 36px;border-radius:100px;
-  font-size:.83rem;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;
-  font-weight:500;transition:.35s var(--ease);border:1px solid transparent;cursor:pointer;font-family:var(--b)}
-.btn-g{background:var(--gold);color:#fff}
-.btn-g:hover{background:var(--gold-lt);transform:translateY(-2px)}
-.btn-o{border-color:rgba(255,255,255,.45);color:#fff}
-.btn-o:hover{background:#fff;color:var(--dark)}
-.scroll{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;
-  width:1px;height:52px;background:linear-gradient(var(--gold),transparent)}
+h1,h2,h3{font-family:var(--d);font-weight:400;line-height:1.02;letter-spacing:-.028em;
+  font-variation-settings:'opsz' 110}
+.serif-i{font-style:italic;font-weight:300}
+.eyebrow{display:inline-flex;align-items:center;gap:.6em;border-radius:100px;
+  padding:.5em 1em;font-size:.63rem;letter-spacing:.24em;text-transform:uppercase;font-weight:500}
+.eyebrow::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--champagne)}
+.on-dark .eyebrow,.eyebrow.dk{background:rgba(247,246,243,.055);border:1px solid var(--hair-d);color:var(--platinum)}
+.eyebrow.lt{background:rgba(15,17,21,.035);border:1px solid var(--hair-l);color:var(--muted)}
 
-/* ── sections ── */
-section{padding:clamp(70px,9vw,120px) 0}
-.eyebrow{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);
-  margin-bottom:16px;display:block}
-.stitle{font-size:clamp(1.9rem,4.4vw,3rem);margin-bottom:18px}
-.slead{color:var(--muted);max-width:640px;font-size:1.03rem}
-.center{text-align:center}.center .slead{margin:0 auto}
+/* ─────────────────────────  YÜZEN ADA NAV  ───────────────────────── */
+.navwrap{position:fixed;top:0;left:0;right:0;z-index:40;padding-top:clamp(14px,2.2vw,26px);
+  display:flex;justify-content:center;pointer-events:none}
+.island{pointer-events:auto;display:flex;align-items:center;gap:clamp(14px,2vw,30px);
+  background:rgba(15,17,21,.62);backdrop-filter:blur(22px) saturate(160%);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  border:1px solid rgba(247,246,243,.13);border-radius:100px;padding:7px 7px 7px 22px;
+  box-shadow:0 18px 50px -26px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.09);
+  transition:transform .8s var(--ez),box-shadow .8s var(--ez)}
+.island .mark{font-family:var(--d);font-size:1.02rem;letter-spacing:.005em;color:var(--porcelain);
+  white-space:nowrap;padding:9px 0;display:flex;align-items:center;gap:.5em}
+.island .mark i{font-style:normal;color:var(--champagne-lt);font-size:.95em}
+.ilinks{display:flex;gap:clamp(12px,1.6vw,24px)}
+.ilinks a{font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(247,246,243,.72);
+  padding:12px 4px;transition:color .55s var(--ez)}
+.ilinks a:hover{color:var(--champagne-lt)}
+.icta{display:inline-flex;align-items:center;gap:10px;background:var(--porcelain);color:var(--ink);
+  border-radius:100px;padding:9px 9px 9px 20px;font-size:.74rem;letter-spacing:.13em;
+  text-transform:uppercase;font-weight:500;transition:transform .7s var(--ez),background .7s var(--ez)}
+.icta .knob{width:30px;height:30px;border-radius:50%;background:rgba(15,17,21,.08);
+  display:grid;place-items:center;transition:transform .7s var(--ez),background .7s var(--ez)}
+.icta .knob svg{width:13px;height:13px}
+.icta:hover .knob{transform:translate(3px,-1px) scale(1.06);background:rgba(15,17,21,.14)}
+.icta:active{transform:scale(.975)}
+.burger{display:none;width:46px;height:46px;border-radius:50%;background:rgba(247,246,243,.07);
+  border:1px solid var(--hair-d);position:relative;cursor:pointer;flex:none}
+.burger i{position:absolute;left:50%;top:50%;width:17px;height:1.4px;background:var(--porcelain);
+  border-radius:2px;transition:transform .75s var(--ez),opacity .4s var(--ez)}
+.burger i:nth-child(1){transform:translate(-50%,-5px)}
+.burger i:nth-child(2){transform:translate(-50%,5px)}
+body.nav-acik .burger i:nth-child(1){transform:translate(-50%,0) rotate(45deg)}
+body.nav-acik .burger i:nth-child(2){transform:translate(-50%,0) rotate(-45deg)}
 
-.imza{background:var(--cream-2)}
-.igrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,6vw,80px);align-items:center}
-.iphoto{aspect-ratio:4/5;background:var(--sand);border-radius:3px;overflow:hidden;position:relative}
-.iphoto img{width:100%;height:100%;object-fit:cover}
-.iphoto::after{content:"";position:absolute;inset:11px;border:1px solid rgba(159,180,212,.4);pointer-events:none}
+/* tam ekran cam menü */
+.sheet{position:fixed;inset:0;z-index:38;background:rgba(15,17,21,.82);
+  backdrop-filter:blur(30px) saturate(150%);-webkit-backdrop-filter:blur(30px) saturate(150%);
+  opacity:0;visibility:hidden;transition:opacity .7s var(--ez),visibility .7s var(--ez);
+  display:flex;flex-direction:column;justify-content:center;padding:0 var(--gut)}
+body.nav-acik .sheet{opacity:1;visibility:visible}
+.sheet a{display:block;font-family:var(--d);font-size:clamp(2rem,10vw,3.1rem);color:var(--porcelain);
+  padding:.22em 0;opacity:0;transform:translateY(46px);filter:blur(6px);
+  transition:opacity .8s var(--ez),transform .8s var(--ez),filter .8s var(--ez)}
+body.nav-acik .sheet a{opacity:1;transform:none;filter:blur(0)}
+body.nav-acik .sheet a:nth-child(1){transition-delay:.10s}
+body.nav-acik .sheet a:nth-child(2){transition-delay:.16s}
+body.nav-acik .sheet a:nth-child(3){transition-delay:.22s}
+body.nav-acik .sheet a:nth-child(4){transition-delay:.28s}
+body.nav-acik .sheet a:nth-child(5){transition-delay:.34s}
+body.nav-acik .sheet a:nth-child(6){transition-delay:.40s}
+.sheet .alt{font-family:var(--b);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--platinum);margin-top:1.6rem}
 
-.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:22px;margin-top:52px}
-.card{background:var(--cream-2);border:1px solid var(--line);border-radius:3px;padding:34px 30px;
-  transition:.45s var(--ease)}
-.card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 18px 44px rgba(0,0,0,.07)}
-.card h3{font-size:1.28rem;margin-bottom:11px}
-.card p{color:var(--muted);font-size:.94rem}
-.card .sure{display:inline-block;margin-top:15px;font-size:.72rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--gold)}
+/* ─────────────────────────  DOUBLE-BEZEL  ───────────────────────── */
+.shell{padding:6px;border-radius:2.1rem;background:rgba(15,17,21,.035);
+  border:1px solid var(--hair-l);box-shadow:var(--amb)}
+.shell>.core{border-radius:calc(2.1rem - 6px);overflow:hidden;background:var(--porcelain);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.7)}
+.on-dark .shell{background:rgba(247,246,243,.045);border-color:var(--hair-d);box-shadow:var(--amb-d)}
+.on-dark .shell>.core{background:var(--ink-2);box-shadow:inset 0 1px 1px rgba(255,255,255,.09)}
 
-.fiyat{background:var(--dark);color:var(--cream)}
-.fiyat .stitle,.fiyat .eyebrow{color:var(--cream)}.fiyat .eyebrow{color:var(--gold-lt)}
-.fiyat .slead{color:rgba(255,255,255,.62)}
-.tabs{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin:42px 0 34px}
-.tab{background:transparent;border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.72);
-  border-radius:100px;padding:11px 26px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
-  cursor:pointer;font-family:var(--b);transition:.3s}
-.tab.on{background:var(--gold);border-color:var(--gold);color:#fff}
-.plist{max-width:760px;margin:0 auto;display:none}
-.plist.on{display:block}
-.prow{display:flex;align-items:baseline;gap:16px;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.11)}
-.pn{font-size:1.02rem}
-.pd{flex:1;border-bottom:1px dotted rgba(255,255,255,.24);transform:translateY(-4px)}
-.pp{font-family:var(--d);font-size:1.2rem;color:var(--gold-lt);white-space:nowrap}
-.pnote{text-align:center;color:rgba(255,255,255,.5);font-size:.86rem;margin-top:26px}
+/* buton-içinde-buton */
+.pill{display:inline-flex;align-items:center;gap:12px;border-radius:100px;
+  padding:11px 11px 11px 26px;font-size:.79rem;letter-spacing:.11em;text-transform:uppercase;
+  font-weight:500;transition:transform .7s var(--ez),background .7s var(--ez),color .7s var(--ez)}
+.pill .knob{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:none;
+  transition:transform .7s var(--ez),background .7s var(--ez)}
+.pill .knob svg{width:14px;height:14px}
+.pill:active{transform:scale(.978)}
+.pill-solid{background:var(--ink);color:var(--porcelain)}
+.pill-solid .knob{background:rgba(247,246,243,.13)}
+.pill-solid:hover .knob{transform:translate(3px,-1px) scale(1.06);background:rgba(247,246,243,.22)}
+.pill-light{background:var(--porcelain);color:var(--ink)}
+.pill-light .knob{background:rgba(15,17,21,.08)}
+.pill-light:hover .knob{transform:translate(3px,-1px) scale(1.06);background:rgba(15,17,21,.15)}
+.pill-ghost{border:1px solid var(--hair-d);color:var(--porcelain)}
+.pill-ghost .knob{background:rgba(247,246,243,.1)}
+.pill-ghost:hover .knob{transform:translate(3px,-1px) scale(1.06)}
+.pill-ghost-l{border:1px solid rgba(15,17,21,.14);color:var(--ink)}
+.pill-ghost-l .knob{background:rgba(15,17,21,.06)}
+.pill-ghost-l:hover .knob{transform:translate(3px,-1px) scale(1.06)}
 
-.randevu{background:var(--cream-2)}
-.rgrid{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(34px,6vw,72px);align-items:start}
-.form{background:var(--cream);border:1px solid var(--line);border-radius:4px;padding:clamp(26px,4vw,40px)}
-.fld{margin-bottom:18px}
-.fld label{display:block;font-size:.73rem;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:8px}
-.fld input,.fld select,.fld textarea{width:100%;background:var(--cream-2);border:1px solid var(--line);
-  border-radius:3px;padding:14px 16px;font-family:var(--b);font-size:.97rem;color:var(--dark);
-  outline:none;transition:.3s;font-weight:300}
-.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--gold);background:#fff}
-.fld textarea{min-height:92px;resize:vertical}
-.form .btn{width:100%;justify-content:center;margin-top:6px}
-.rnote{font-size:.83rem;color:var(--muted);text-align:center;margin-top:14px}
-.rpoints{list-style:none}
-.rpoints li{display:flex;gap:15px;padding:19px 0;border-bottom:1px solid var(--line)}
-.rpoints b{font-family:var(--d);font-size:1.5rem;color:var(--gold);line-height:1;flex:none;width:34px}
-.rpoints span{font-size:.95rem;color:var(--muted)}
-.rpoints strong{display:block;color:var(--dark);font-weight:500;margin-bottom:3px;font-size:1rem}
+/* kaydırma girişi */
+.rv{opacity:0;transform:translateY(58px);filter:blur(9px);
+  transition:opacity .95s var(--ez),transform .95s var(--ez),filter .95s var(--ez)}
+.rv.in{opacity:1;transform:none;filter:blur(0)}
+@media(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;filter:none;transition:none}
+  html{scroll-behavior:auto}
+}
 
-.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:12px;margin-top:48px}
-.gitem{aspect-ratio:1;background:var(--sand);overflow:hidden;cursor:pointer;position:relative}
-.gitem img{width:100%;height:100%;object-fit:cover;transition:.8s var(--ease)}
-.gitem:hover img{transform:scale(1.07)}
-.lb{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:100;display:none;place-items:center;padding:26px}
-.lb.on{display:grid}
-.lb img{max-width:92vw;max-height:88vh;object-fit:contain}
-.lbx{position:absolute;top:22px;right:28px;color:#fff;font-size:2.2rem;cursor:pointer;line-height:1}
+/* ─────────────────────────  HERO (editorial split)  ───────────────────────── */
+.hero{position:relative;background:var(--ink);color:var(--porcelain);min-height:100dvh;
+  display:flex;align-items:center;padding:clamp(8rem,17vw,11rem) 0 clamp(3.5rem,7vw,6rem);
+  overflow:hidden}
+.hero::before{content:"";position:absolute;width:120vmax;height:120vmax;left:-42vmax;top:-52vmax;
+  background:radial-gradient(circle,rgba(140,166,204,.15),transparent 62%);pointer-events:none}
+.hero::after{content:"";position:absolute;width:88vmax;height:88vmax;right:-40vmax;bottom:-50vmax;
+  background:radial-gradient(circle,rgba(196,168,124,.11),transparent 64%);pointer-events:none}
+.hgrid{position:relative;display:grid;grid-template-columns:1.06fr .94fr;
+  gap:clamp(2.5rem,5vw,5rem);align-items:center}
+.hero h1{font-size:clamp(3.05rem,8.6vw,7rem);margin:1.5rem 0 0}
+.hero h1 em{display:block;font-style:italic;font-weight:300;color:var(--platinum)}
+.hlead{margin-top:1.7rem;max-width:30rem;font-size:clamp(1rem,1.15vw,1.1rem);color:var(--muted-lt)}
+.hbtns{display:flex;flex-wrap:wrap;gap:12px;margin-top:2.4rem}
+.hstats{display:flex;flex-wrap:wrap;gap:clamp(1.6rem,3.6vw,3rem);margin-top:clamp(2.6rem,5vw,3.6rem);
+  padding-top:clamp(1.6rem,3vw,2.2rem);border-top:1px solid var(--hair-d)}
+.hstats b{display:block;font-family:var(--d);font-size:clamp(1.55rem,2.6vw,2.1rem);font-weight:400;
+  color:var(--porcelain);line-height:1.1}
+.hstats span{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silver)}
 
-.ekip{background:var(--cream-2)}
-.egrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:26px;margin-top:48px}
-.eitem{text-align:center}
-.eph{aspect-ratio:3/4;background:var(--sand);border-radius:3px;overflow:hidden;margin-bottom:16px}
-.eph img{width:100%;height:100%;object-fit:cover}
-.eitem h3{font-size:1.14rem;margin-bottom:3px}
-.eitem span{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+/* sağdaki z-ekseni kart yığını */
+.stack{position:relative;padding-bottom:16%}
+.stack .shell{position:relative}
+.stack .a{z-index:2}
+.stack .a .core{aspect-ratio:4/5}
+.stack .b{position:absolute;right:-4%;bottom:0;width:52%;z-index:3}
+.stack .b .core{aspect-ratio:1}
+.stack img{width:100%;height:100%;object-fit:cover}
+.tagfloat{position:absolute;left:-5%;top:9%;z-index:4;background:rgba(15,17,21,.72);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--hair-d);
+  border-radius:100px;padding:11px 20px;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--champagne-lt);white-space:nowrap;box-shadow:var(--amb-d)}
 
-footer{background:var(--dark);color:rgba(255,255,255,.72);padding:clamp(60px,7vw,90px) 0 34px}
-.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(30px,5vw,64px)}
-footer h3{color:var(--cream);font-size:1.5rem;margin-bottom:16px}
-footer h4{font-size:.73rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);
-  margin-bottom:17px;font-family:var(--b);font-weight:500}
-footer a{color:rgba(255,255,255,.72);text-decoration:none;transition:.3s;display:block;
-  padding:6px 0;margin-bottom:1px}
-footer a:hover{color:var(--gold-lt)}
-footer p{font-size:.94rem;margin-bottom:9px}
-.fbot{margin-top:52px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);
-  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.82rem;color:rgba(255,255,255,.42)}
+/* ─────────────────────────  ŞERİT  ───────────────────────── */
+.strip{background:var(--ink-2);color:var(--platinum);border-top:1px solid var(--hair-d);
+  padding:1.35rem 0;overflow:hidden}
+.strip .row{display:flex;gap:clamp(2rem,5vw,4.5rem);flex-wrap:wrap;justify-content:center;
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase}
+.strip .row span{display:inline-flex;align-items:center;gap:.7em}
+.strip .row span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--champagne)}
 
-.wafab{position:fixed;right:20px;bottom:20px;z-index:70;width:56px;height:56px;border-radius:50%;
-  background:#25d366;display:grid;place-items:center;box-shadow:0 8px 26px rgba(37,211,102,.42);
-  text-decoration:none;transition:.35s var(--ease)}
-.wafab:hover{transform:scale(1.09)}
-.wafab svg{width:29px;height:29px;fill:#fff}
+/* ─────────────────────────  BÖLÜM İSKELETİ  ───────────────────────── */
+section{padding:var(--pad) 0}
+.on-dark{background:var(--ink);color:var(--porcelain)}
+.shead{max-width:44rem}
+.shead h2,.about h2{font-size:clamp(2.1rem,4.9vw,3.7rem);margin:1.2rem 0 1.1rem}
+.shead p{color:var(--muted);font-size:1.02rem;max-width:36rem}
+.on-dark .shead p{color:var(--muted-lt)}
 
-@media(max-width:880px){
-  nav,.hcta{display:none}
-  .burger{display:flex;position:relative;z-index:90}
-  header{z-index:90}
-  nav.open{display:flex;position:fixed;inset:0;background:var(--dark);flex-direction:column;
-    justify-content:center;align-items:center;gap:34px;font-size:1.1rem;z-index:80}
-  nav.open a{color:#fff}
-  /* menü açıkken: arka plan kaymasın, hamburger çarpıya dönüşsün ve tıklanabilir kalsın */
-  body.menu-acik{overflow:hidden}
-  body.menu-acik header,body.menu-acik header.s{background:transparent;box-shadow:none}
-  body.menu-acik .logo,body.menu-acik header.s .logo{color:var(--cream)}
-  body.menu-acik .burger i,body.menu-acik header.s .burger i{background:#fff}
-  body.menu-acik .burger i:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
-  body.menu-acik .burger i:nth-child(2){opacity:0}
-  body.menu-acik .burger i:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-  .igrid,.rgrid,.fgrid{grid-template-columns:1fr}
-  .iphoto{max-width:400px;margin:0 auto}
+/* hakkımızda */
+.about{display:grid;grid-template-columns:.88fr 1.12fr;gap:clamp(2.4rem,5.5vw,5.5rem);align-items:center}
+.about>.shell>.core{aspect-ratio:4/5}
+.about img{width:100%;height:100%;object-fit:cover}
+.about p+p{margin-top:1.05rem}
+.about .body{color:var(--muted);font-size:1.02rem}
+.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:2.4rem}
+.awards .shell{padding:5px;border-radius:1.5rem}
+.awards .core{border-radius:calc(1.5rem - 5px);padding:20px 22px;background:var(--porcelain-2)}
+.awards b{display:block;font-family:var(--d);font-size:1.5rem;font-weight:400;letter-spacing:-.02em}
+.awards span{font-size:.63rem;letter-spacing:.19em;text-transform:uppercase;color:var(--muted)}
+
+/* hizmetler — asimetrik ızgara */
+.svc{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:clamp(2.6rem,5vw,3.8rem)}
+.svc .shell{padding:6px;border-radius:1.75rem}
+.svc .core{border-radius:calc(1.75rem - 6px);padding:clamp(1.6rem,2.5vw,2.3rem);
+  background:var(--ink-2);display:flex;flex-direction:column;gap:.8rem;height:100%;
+  transition:transform .8s var(--ez),background .8s var(--ez)}
+.svc .shell:hover .core{transform:translateY(-5px);background:var(--ink-3)}
+.svc h3{font-size:clamp(1.3rem,2vw,1.62rem)}
+.svc p{color:var(--muted-lt);font-size:.93rem;flex:1}
+.svc .sure{font-size:.63rem;letter-spacing:.19em;text-transform:uppercase;color:var(--champagne-lt)}
+.svc .n{font-family:var(--d);font-size:.85rem;color:var(--silver);letter-spacing:.06em}
+.s5{grid-column:span 5}.s4{grid-column:span 4}.s3{grid-column:span 3}
+.s6{grid-column:span 6}.s7{grid-column:span 7}
+
+/* galeri bento */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(150px,17vw,225px);
+  gap:14px;margin-top:clamp(2.6rem,5vw,3.8rem)}
+.bento .shell{padding:5px;border-radius:1.6rem;overflow:hidden}
+.bento .core{border-radius:calc(1.6rem - 5px);height:100%}
+.bento img{width:100%;height:100%;object-fit:cover;
+  transition:transform 1.15s var(--ez),filter 1.15s var(--ez)}
+.bento .shell:hover img{transform:scale(1.06)}
+.b22{grid-column:span 2;grid-row:span 2}
+.b21{grid-column:span 2}
+.b12{grid-row:span 2}
+
+/* randevu */
+.book{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(2.4rem,5vw,4.5rem);align-items:start}
+.steps{margin-top:2.2rem;display:grid;gap:1.5rem}
+.steps li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:1.1rem;align-items:start}
+.steps .no{font-family:var(--d);font-size:.9rem;color:var(--champagne);padding-top:.15rem}
+.steps b{display:block;font-weight:500;font-size:1rem}
+.steps span{color:var(--muted-lt);font-size:.92rem}
+form .core{padding:clamp(1.6rem,3.2vw,2.5rem)}
+.fld{margin-bottom:1.05rem}
+.fld label{display:block;font-size:.63rem;letter-spacing:.19em;text-transform:uppercase;
+  color:var(--silver);margin-bottom:.55rem}
+.fld input,.fld select,.fld textarea{width:100%;min-height:52px;background:rgba(247,246,243,.045);
+  border:1px solid var(--hair-d);border-radius:16px;padding:14px 17px;color:var(--porcelain);
+  font-family:var(--b);font-size:.95rem;font-weight:300;
+  transition:border-color .6s var(--ez),background .6s var(--ez)}
+.fld textarea{min-height:104px;resize:vertical}
+.fld input::placeholder,.fld textarea::placeholder{color:rgba(247,246,243,.34)}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;
+  border-color:rgba(196,168,124,.55);background:rgba(247,246,243,.075)}
+.fld select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23A7ADB8' stroke-width='1.4'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 18px center}
+.fld select option{background:var(--ink-2);color:var(--porcelain)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1.05rem}
+form .pill{width:100%;justify-content:space-between;margin-top:.5rem;border:none;cursor:pointer;
+  font-family:var(--b)}
+.fnote{font-size:.76rem;color:var(--muted-lt);text-align:center;margin-top:1rem}
+
+/* iletişim + footer */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;
+  margin-top:clamp(2.4rem,5vw,3.4rem)}
+.cgrid .shell{padding:6px;border-radius:1.75rem}
+.cgrid .core{border-radius:calc(1.75rem - 6px);padding:clamp(1.5rem,2.4vw,2rem);background:var(--porcelain-2);
+  display:flex;flex-direction:column;gap:.5rem;height:100%}
+.cgrid small{font-size:.63rem;letter-spacing:.19em;text-transform:uppercase;color:var(--muted)}
+.cgrid b{font-family:var(--d);font-size:1.28rem;font-weight:400;letter-spacing:-.015em;line-height:1.25}
+.cgrid a.ln{color:var(--ink);border-bottom:1px solid rgba(15,17,21,.2);padding-bottom:2px;
+  align-self:flex-start;min-height:40px;display:inline-flex;align-items:center;
+  transition:border-color .6s var(--ez)}
+.cgrid a.ln:hover{border-color:var(--champagne)}
+footer{background:var(--ink);color:var(--porcelain);padding:clamp(3.5rem,7vw,5.5rem) 0 2.6rem}
+.frow2{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;
+  padding-bottom:2.4rem;border-bottom:1px solid var(--hair-d)}
+.fmark{font-family:var(--d);font-size:1.65rem}
+.flinks{display:flex;flex-wrap:wrap;gap:1.5rem}
+.flinks a{font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted-lt);
+  min-height:40px;display:inline-flex;align-items:center;transition:color .6s var(--ez)}
+.flinks a:hover{color:var(--champagne-lt)}
+.fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.9rem;
+  font-size:.73rem;color:var(--silver)}
+
+/* WhatsApp yüzen düğme */
+.wafab{position:fixed;right:clamp(14px,2.4vw,26px);bottom:clamp(14px,2.4vw,26px);z-index:36;
+  width:58px;height:58px;border-radius:50%;background:#1FA855;display:grid;place-items:center;
+  box-shadow:0 18px 44px -16px rgba(31,168,85,.65);
+  transition:transform .7s var(--ez)}
+.wafab:hover{transform:translateY(-3px) scale(1.05)}
+.wafab svg{width:27px;height:27px;fill:#fff}
+
+/* ─────────────────────────  MOBİL  ───────────────────────── */
+@media(max-width:980px){
+  .hgrid,.about,.book{grid-template-columns:1fr}
+  .stack{max-width:420px;margin-inline:auto;padding-bottom:20%}
+  .about .shell{max-width:420px}
+  .s5,.s4,.s3,.s6,.s7{grid-column:span 6}
+}
+@media(max-width:768px){
+  :root{--gut:1.15rem}
+  .ilinks,.icta{display:none}
+  .burger{display:block}
+  .island{padding:7px 7px 7px 20px;width:calc(100vw - 2.3rem);justify-content:space-between}
+  .hero{padding-top:clamp(7rem,26vw,9rem)}
+  .tagfloat{left:0;top:5%;font-size:.6rem;padding:10px 16px}
+  .svc,.cgrid{grid-template-columns:1fr}
+  .s5,.s4,.s3,.s6,.s7{grid-column:span 1}
+  .bento{grid-template-columns:1fr;grid-auto-rows:auto}
+  .bento .shell{grid-column:span 1!important;grid-row:span 1!important}
+  .bento .core{aspect-ratio:4/5;height:auto}
+  .bento .b21 .core{aspect-ratio:16/10}
+  .frow{grid-template-columns:1fr}
+  .hstats{gap:1.5rem 2rem}
+  .frow2{flex-direction:column;gap:1.4rem}
 }
 </style>
 </head>
 <body>
+<div class="grain"></div>
 
-<header id="hd"><div class="w hrow">
-  <a href="#" class="logo">White Queen</a>
-  <nav id="nv"><a href="#hakkimizda">Hakkımızda</a><a href="#hizmetler">Hizmetler</a><a href="#randevu">Randevu</a><a href="#galeri">Galeri</a><a href="#iletisim">İletişim</a></nav>
-  <a class="hcta" href="https://wa.me/905338708830" target="_blank">Randevu</a>
-  <div class="burger" onclick="document.getElementById('nv').classList.toggle('open');document.body.classList.toggle('menu-acik')"><i></i><i></i><i></i></div>
-</div></header>
-
-<div class="hero">
-  <div class="w">
-    <div class="hkicker">Gazi Mustafa Kemal Bulvarı · Gazimağusa</div>
-    <h1>White Queen <em>Salon</em></h1>
-    <p class="hsub">Gazimağusa'da saç, tırnak ve kalıcı makyaj — hepsi tek çatı altında, uluslararası ödüllü ellerde.</p>
-    
-    <div class="hbtns">
-      <a class="btn btn-g" href="https://wa.me/905338708830" target="_blank">WhatsApp'tan randevu</a>
-      <a class="btn btn-o" href="#hizmetler">Hizmetleri gör</a>
-    </div>
+<!-- ══════════  YÜZEN ADA NAV  ══════════ -->
+<div class="navwrap">
+  <div class="island">
+    <a class="mark" href="#ust"><i>♛</i> White Queen</a>
+    <nav class="ilinks">
+      <a href="#hakkimizda">Hakkımızda</a>
+      <a href="#hizmetler">Hizmetler</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#randevu">Randevu</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+    <a class="icta" href="https://wa.me/905338708830" target="_blank" rel="noopener">Randevu
+      <span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 18 18 6M9 6h9v9"/></svg></span>
+    </a>
+    <div class="burger" id="brg" role="button" tabindex="0" aria-label="Menü" aria-expanded="false"><i></i><i></i></div>
   </div>
-  <div class="scroll"></div>
 </div>
 
-<section class="imza" id="hakkimizda"><div class="w igrid">
-  <div class="iphoto rv"><img src="foto/gelin.jpg" alt="White Queen Salon" loading="lazy" ></div>
-  <div class="rv">
-    <span class="eyebrow">Hakkımızda</span>
-    <h2 class="stitle">Bir salon, üç ayrı uzmanlık</h2>
-    <p class="slead">White Queen Salon, Gazimağusa'da saç tasarımı, tırnak ve güzellik uygulamalarını aynı çatı altında toplayan bir salon. Ağırlık merkezimiz kalıcı makyaj: kıl tekniği kaş, pudralama ve dudak renklendirme. Bu alandaki çalışmalarımız bizi uluslararası kalıcı makyaj yarışmalarına taşıdı; 2024 ve 2025 organizasyonlarından ödülle döndük. Aynı özeni saç ve tırnak tarafında da sürdürüyoruz — mikro kaynak ve saç tasarımından kalıcı ojeye kadar. Gelin hazırlığı bizim için ayrı bir başlık: saç, makyaj, tırnak ve kaş, tek bir randevu içinde planlanır. Her uygulamadan önce ne istediğinizi konuşur, size uygun olanı birlikte belirleriz.</p>
-    <div style="display:flex;gap:26px;flex-wrap:wrap;margin-top:30px"><div><b style="font-family:var(--d);font-size:2rem;color:var(--gold);display:block;line-height:1.1">2024·2025</b><span style="font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Uluslararası ödül</span></div><div><b style="font-family:var(--d);font-size:2rem;color:var(--gold);display:block;line-height:1.1">8.700+</b><span style="font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Instagram takipçisi</span></div><div><b style="font-family:var(--d);font-size:2rem;color:var(--gold);display:block;line-height:1.1">14.000+</b><span style="font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Paylaşılan çalışma</span></div></div>
-  </div>
-</div></section>
+<div class="sheet" id="sheet">
+  <a href="#hakkimizda">Hakkımızda</a>
+  <a href="#hizmetler">Hizmetler</a>
+  <a href="#galeri">Galeri</a>
+  <a href="#randevu">Randevu</a>
+  <a href="#iletisim">İletişim</a>
+  <span class="alt">Gazi Mustafa Kemal Bulvarı · Gazimağusa · 0533 870 88 30</span>
+</div>
 
-<section id="hizmetler"><div class="w">
-  <div class="center rv">
-    <span class="eyebrow">Hizmetlerimiz</span>
-    <h2 class="stitle">Sunduğumuz hizmetler</h2>
-    <p class="slead">Saç, tırnak ve güzellik uygulamalarının tamamı aynı salonda. Gelin hazırlığında hepsi tek randevuda planlanır.</p>
-  </div>
-  <div class="svc"><div class="card rv"><h3>Kalıcı Kaş — Kıl Tekniği</h3><p>Yüz hattınıza göre tasarlanan, tek tek çizilen kıl tekniği kalıcı kaş uygulaması. Doğal duran, sizin kaşınız gibi görünen bir sonuç.</p><span class="sure">120 – 150 dk</span></div><div class="card rv"><h3>Kalıcı Dudak Makyajı</h3><p>Dudak sınırını belirginleştiren ve doğal bir renk veren kalıcı dudak uygulaması. Renk tonu birlikte seçilir.</p><span class="sure">120 dk</span></div><div class="card rv"><h3>Kaş Laminasyonu</h3><p>Kendi kaş kıllarınızı yönlendirip sabitleyen, hacimli ve düzenli bir görünüm veren uygulama.</p><span class="sure">60 dk</span></div><div class="card rv"><h3>İpek Kirpik</h3><p>Göz şeklinize uygun uzunluk ve hacimde ipek kirpik uygulaması; dolgu seansları ile korunur.</p><span class="sure">90 – 120 dk</span></div><div class="card rv"><h3>Gelin Saçı &amp; Makyajı</h3><p>Düğün günü için saç, makyaj ve provalar. Deneme randevusu ile gün öncesinde birlikte karar veririz.</p><span class="sure">Paket / gün planı</span></div><div class="card rv"><h3>Saç Tasarımı &amp; Mikro Kaynak</h3><p>Kesim, renk ve şekillendirmenin yanında ince mikro kaynak tekniğiyle hacim ve uzunluk uygulamaları.</p><span class="sure">Uygulamaya göre</span></div><div class="card rv"><h3>Tırnak &amp; Kalıcı Oje</h3><p>Manikür, kalıcı oje, protez tırnak ve nail art tasarımları.</p><span class="sure">60 – 120 dk</span></div><div class="card rv"><h3>Cilt Bakımı</h3><p>Cilt tipinize göre planlanan temizlik, nemlendirme ve bakım uygulamaları.</p><span class="sure">45 – 60 dk</span></div></div>
-</div></section>
-
-
-
-<section class="randevu" id="randevu"><div class="w rgrid">
-  <div class="rv">
-    <span class="eyebrow">Randevu</span>
-    <h2 class="stitle">Yerinizi ayırtın</h2>
-    <p class="slead" style="margin-bottom:26px">Formu doldurun, WhatsApp'ta hazır mesaj olarak açılsın. Onaylayıp gönderin, size dönüş yapalım.</p>
-    <ul class="rpoints">
-      <li><b>01</b><span><strong>Hızlı dönüş</strong>Mesajınıza aynı gün içinde yanıt veriyoruz.</span></li>
-      <li><b>02</b><span><strong>Ön görüşme</strong>Uygulama öncesi ihtiyacınızı birlikte belirliyoruz.</span></li>
-      <li><b>03</b><span><strong>Net fiyat</strong>Fiyatı işlem öncesinde konuşuyoruz, sürpriz yok.</span></li>
-    </ul>
-  </div>
-  <div class="form rv">
-    <div class="fld"><label>Ad Soyad</label><input id="f_ad" placeholder="Adınız ve soyadınız"></div>
-    <div class="fld"><label>Telefon</label><input id="f_tel" placeholder="05xx xxx xx xx"></div>
-    <div class="fld"><label>Hizmet</label><select id="f_hiz"><option>Kalıcı Kaş — Kıl Tekniği</option><option>Kalıcı Dudak Makyajı</option><option>Kaş Laminasyonu</option><option>İpek Kirpik</option><option>Gelin Saçı &amp; Makyajı</option><option>Saç Tasarımı &amp; Mikro Kaynak</option><option>Tırnak &amp; Kalıcı Oje</option><option>Cilt Bakımı</option><option>Diğer / emin değilim</option></select></div>
-    <div class="fld"><label>Tercih ettiğiniz gün / saat</label><input id="f_zaman" placeholder="Örn. Cuma öğleden sonra"></div>
-    <div class="fld"><label>Eklemek istedikleriniz</label><textarea id="f_not" placeholder="İsteğe bağlı"></textarea></div>
-    <a class="btn btn-g" id="f_gonder" href="#" target="_blank">WhatsApp'ta gönder</a>
-    <p class="rnote">Form bilgileri kaydedilmez, doğrudan WhatsApp mesajına dönüşür.</p>
-  </div>
-</div></section>
-
-<section id="galeri"><div class="w">
-  <div class="center rv">
-    <span class="eyebrow">Galeri</span>
-    <h2 class="stitle">Çalışmalarımız</h2>
-    <p class="slead">Salonumuzdan ve uygulamalarımızdan kareler.</p>
-  </div>
-  <div class="gal"><div class="gitem rv"><img src="foto/gelin.jpg" alt="White Queen Salon" loading="lazy" ></div><div class="gitem rv"><img src="foto/kalici-kas.jpg" alt="White Queen Salon" loading="lazy" ></div><div class="gitem rv"><img src="foto/kalici-dudak.jpg" alt="White Queen Salon" loading="lazy" ></div><div class="gitem rv"><img src="foto/tirnak.jpg" alt="White Queen Salon" loading="lazy" ></div><div class="gitem rv"><img src="foto/ipek-kirpik.jpg" alt="White Queen Salon" loading="lazy" ></div><div class="gitem rv"><img src="foto/sac-kaynak.jpg" alt="White Queen Salon" loading="lazy" ></div><div class="gitem rv"><img src="foto/dudak-detay.jpg" alt="White Queen Salon" loading="lazy" ></div><div class="gitem rv"><img src="foto/odul.jpg" alt="White Queen Salon" loading="lazy" ></div></div>
-</div></section>
-
-
-
-
-
-<footer id="iletisim"><div class="w">
-  <div class="fgrid">
+<!-- ══════════  HERO  ══════════ -->
+<header class="hero on-dark" id="ust">
+  <div class="w hgrid">
     <div>
-      <h3>White Queen Salon</h3>
-      <p style="color:rgba(255,255,255,.6);max-width:330px">Gazimağusa'da saç, tırnak ve kalıcı makyaj — hepsi tek çatı altında, uluslararası ödüllü ellerde.</p>
+      <span class="eyebrow rv">Gazimağusa · KKTC</span>
+      <h1 class="rv" style="transition-delay:.08s">White Queen <em>Salon</em></h1>
+      <p class="hlead rv" style="transition-delay:.14s">
+        Saç, tırnak ve kalıcı makyaj — hepsi tek çatı altında, uluslararası ödüllü ellerde.
+        Her uygulamadan önce ne istediğinizi konuşur, size uygun olanı birlikte belirleriz.
+      </p>
+      <div class="hbtns rv" style="transition-delay:.2s">
+        <a class="pill pill-light" href="#randevu">Randevu alın
+          <span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 18 18 6M9 6h9v9"/></svg></span>
+        </a>
+        <a class="pill pill-ghost" href="#hizmetler">Hizmetleri görün
+          <span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span>
+        </a>
+      </div>
+      <div class="hstats rv" style="transition-delay:.26s">
+        <div><b>2024·2025</b><span>Uluslararası ödül</span></div>
+        <div><b>8.700+</b><span>Instagram takipçisi</span></div>
+        <div><b>14.000+</b><span>Paylaşılan çalışma</span></div>
+      </div>
     </div>
-    <div>
-      <h4>İletişim</h4>
-      <a href="https://wa.me/905338708830" target="_blank">0533 870 88 30</a>
-      <a href="https://instagram.com/whitequeenderyaaltinel" target="_blank">@whitequeenderyaaltinel</a>
-      <a href="https://www.google.com/maps/search/Gazi+Mustafa+Kemal+Bulvarı,+Gazimağusa" target="_blank">Haritada aç</a>
-    </div>
-    <div>
-      <h4>Adres & Saatler</h4>
-      <p style="font-size:.92rem;color:rgba(255,255,255,.6)">Gazi Mustafa Kemal Bulvarı, Gazimağusa</p>
-      <p style="font-size:.92rem;color:rgba(255,255,255,.6)">Pazartesi – Cumartesi · 08:00 – 18:30 (Perşembe 13:30'da kapanır) · Pazar 13:00 – 18:30</p>
+
+    <div class="stack rv" style="transition-delay:.16s">
+      <span class="tagfloat">Kalıcı Makyaj · Gelin · Tırnak</span>
+      <div class="shell a"><div class="core"><img src="foto/gelin.jpg" alt="White Queen Salon gelin saçı ve makyajı"></div></div>
+      <div class="shell b"><div class="core"><img src="foto/kalici-dudak.jpg" alt="Kalıcı dudak makyajı uygulaması"></div></div>
     </div>
   </div>
-  <div class="fbot">
-    <span>© <span id="yil"></span> White Queen Salon</span>
-    <span>MY BASKETO LTD tarafından hazırlandı</span>
-  </div>
-</div></footer>
+</header>
 
-<a class="wafab" href="https://wa.me/905338708830" target="_blank" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3zM12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1112 20.2z"/></svg>
+<div class="strip">
+  <div class="w row">
+    <span>Kıl Tekniği Kaş</span><span>Kalıcı Dudak</span><span>Kaş Laminasyonu</span>
+    <span>İpek Kirpik</span><span>Gelin Hazırlığı</span><span>Mikro Kaynak</span><span>Tırnak Tasarımı</span>
+  </div>
+</div>
+
+<!-- ══════════  HAKKIMIZDA  ══════════ -->
+<section id="hakkimizda">
+  <div class="w about">
+    <div class="shell rv"><div class="core"><img src="foto/odul.jpg" alt="Uluslararası kalıcı makyaj ödül töreni, 2025 İstanbul"></div></div>
+    <div>
+      <span class="eyebrow lt rv">Hakkımızda</span>
+      <h2 class="rv" style="transition-delay:.06s">Bir salon,<br><span class="serif-i">üç ayrı uzmanlık</span></h2>
+      <div class="body rv" style="transition-delay:.12s">
+        <p>White Queen Salon, Gazimağusa'da saç tasarımı, tırnak ve güzellik uygulamalarını aynı çatı
+        altında toplayan bir salon. Ağırlık merkezimiz kalıcı makyaj: kıl tekniği kaş, pudralama ve
+        dudak renklendirme.</p>
+        <p>Bu alandaki çalışmalarımız bizi uluslararası kalıcı makyaj yarışmalarına taşıdı; 2024 ve
+        2025 organizasyonlarından ödülle döndük. Aynı özeni saç ve tırnak tarafında da sürdürüyoruz —
+        mikro kaynak ve saç tasarımından kalıcı ojeye kadar.</p>
+        <p>Gelin hazırlığı bizim için ayrı bir başlık: saç, makyaj, tırnak ve kaş tek bir randevu
+        içinde planlanır.</p>
+      </div>
+      <div class="awards rv" style="transition-delay:.18s">
+        <div class="shell"><div class="core"><b>2024</b><span>Uluslararası ödül</span></div></div>
+        <div class="shell"><div class="core"><b>2025</b><span>Uluslararası ödül</span></div></div>
+        <div class="shell"><div class="core"><b>Kıbrıs</b><span>Gazimağusa merkez</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════  HİZMETLER  ══════════ -->
+<section class="on-dark" id="hizmetler">
+  <div class="w">
+    <div class="shead">
+      <span class="eyebrow rv">Hizmetler</span>
+      <h2 class="rv" style="transition-delay:.06s">Sunduğumuz <span class="serif-i">uygulamalar</span></h2>
+      <p class="rv" style="transition-delay:.12s">Saç, tırnak ve güzellik uygulamalarının tamamı aynı
+      salonda. Gelin hazırlığında hepsi tek randevuda planlanır.</p>
+    </div>
+    <div class="svc">
+      <div class="shell s5 rv"><div class="core">
+        <span class="n">01</span><h3>Kalıcı Kaş — Kıl Tekniği</h3>
+        <p>Yüz hattınıza göre tasarlanan, tek tek çizilen kıl tekniği kalıcı kaş uygulaması. Doğal duran, sizin kaşınız gibi görünen bir sonuç.</p>
+        <span class="sure">120 – 150 dk</span></div></div>
+      <div class="shell s4 rv" style="transition-delay:.05s"><div class="core">
+        <span class="n">02</span><h3>Kalıcı Dudak Makyajı</h3>
+        <p>Dudak sınırını belirginleştiren ve doğal bir renk veren kalıcı uygulama. Renk tonu birlikte seçilir.</p>
+        <span class="sure">120 dk</span></div></div>
+      <div class="shell s3 rv" style="transition-delay:.1s"><div class="core">
+        <span class="n">03</span><h3>Kaş Laminasyonu</h3>
+        <p>Kendi kaş kıllarınızı yönlendirip sabitleyen, hacimli ve düzenli bir görünüm veren uygulama.</p>
+        <span class="sure">60 dk</span></div></div>
+      <div class="shell s4 rv"><div class="core">
+        <span class="n">04</span><h3>İpek Kirpik</h3>
+        <p>Göz şeklinize uygun uzunluk ve hacimde ipek kirpik uygulaması; dolgu seansları ile korunur.</p>
+        <span class="sure">90 – 120 dk</span></div></div>
+      <div class="shell s3 rv" style="transition-delay:.05s"><div class="core">
+        <span class="n">05</span><h3>Tırnak & Kalıcı Oje</h3>
+        <p>Manikür, kalıcı oje, protez tırnak ve nail art tasarımları.</p>
+        <span class="sure">60 – 120 dk</span></div></div>
+      <div class="shell s5 rv" style="transition-delay:.1s"><div class="core">
+        <span class="n">06</span><h3>Gelin Saçı & Makyajı</h3>
+        <p>Düğün günü için saç, makyaj ve provalar. Deneme randevusu ile gün öncesinde birlikte karar veririz.</p>
+        <span class="sure">Paket / gün planı</span></div></div>
+      <div class="shell s7 rv"><div class="core">
+        <span class="n">07</span><h3>Saç Tasarımı & Mikro Kaynak</h3>
+        <p>Kesim, renk ve şekillendirmenin yanında ince mikro kaynak tekniğiyle hacim ve uzunluk uygulamaları.</p>
+        <span class="sure">Uygulamaya göre</span></div></div>
+      <div class="shell s5 rv" style="transition-delay:.05s"><div class="core">
+        <span class="n">08</span><h3>Cilt Bakımı</h3>
+        <p>Cilt tipinize göre planlanan temizlik, nemlendirme ve bakım uygulamaları.</p>
+        <span class="sure">45 – 60 dk</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════  GALERİ  ══════════ -->
+<section id="galeri">
+  <div class="w">
+    <div class="shead">
+      <span class="eyebrow lt rv">Galeri</span>
+      <h2 class="rv" style="transition-delay:.06s">Çalışmalarımızdan <span class="serif-i">kareler</span></h2>
+      <p class="rv" style="transition-delay:.12s">Hepsi salonumuzda yapılmış gerçek uygulamalar.</p>
+    </div>
+    <div class="bento">
+      <div class="shell b22 rv"><div class="core"><img src="foto/gelin.jpg" alt="Gelin saçı ve makyajı"></div></div>
+      <div class="shell b21 rv" style="transition-delay:.05s"><div class="core"><img src="foto/kalici-kas.jpg" alt="Kıl tekniği kalıcı kaş"></div></div>
+      <div class="shell rv" style="transition-delay:.1s"><div class="core"><img src="foto/kalici-dudak.jpg" alt="Kalıcı dudak makyajı"></div></div>
+      <div class="shell rv" style="transition-delay:.15s"><div class="core"><img src="foto/tirnak.jpg" alt="Tırnak tasarımı ve kalıcı oje"></div></div>
+      <div class="shell b12 rv"><div class="core"><img src="foto/ipek-kirpik.jpg" alt="İpek kirpik uygulaması"></div></div>
+      <div class="shell b21 rv" style="transition-delay:.05s"><div class="core"><img src="foto/dudak-detay.jpg" alt="Kalıcı dudak makyajı detay"></div></div>
+      <div class="shell b12 rv" style="transition-delay:.1s"><div class="core"><img src="foto/odul.jpg" alt="Uluslararası kalıcı makyaj ödülü"></div></div>
+      <div class="shell b21 rv" style="transition-delay:.15s"><div class="core"><img src="foto/sac-kaynak.jpg" alt="Mikro kaynak öncesi ve sonrası"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════  RANDEVU  ══════════ -->
+<section class="on-dark" id="randevu">
+  <div class="w book">
+    <div class="shead">
+      <span class="eyebrow rv">Randevu</span>
+      <h2 class="rv" style="transition-delay:.06s">Yerinizi <span class="serif-i">ayırtın</span></h2>
+      <p class="rv" style="transition-delay:.12s">
+        Formu doldurun, WhatsApp'ta hazır mesaj olarak açılsın. Onaylayıp gönderin, size dönüş yapalım.</p>
+      <ul class="steps rv" style="transition-delay:.18s">
+        <li><span class="no">01</span><div><b>Hızlı dönüş</b><span>Mesajınıza aynı gün içinde yanıt veriyoruz.</span></div></li>
+        <li><span class="no">02</span><div><b>Ön görüşme</b><span>Uygulama öncesinde ihtiyacınızı birlikte belirliyoruz.</span></div></li>
+        <li><span class="no">03</span><div><b>Net fiyat</b><span>Fiyatı işlem öncesinde konuşuyoruz, sürpriz yok.</span></div></li>
+        <li><span class="no">04</span><div><b>Gelin randevusu</b><span>Saç, makyaj, tırnak ve kaş tek planda toplanır.</span></div></li>
+      </ul>
+    </div>
+
+    <form class="shell rv" id="frm" style="transition-delay:.1s"><div class="core">
+      <div class="fld"><label for="ad">Ad Soyad</label>
+        <input id="ad" name="ad" placeholder="Adınız ve soyadınız" required></div>
+      <div class="frow">
+        <div class="fld"><label for="tel">Telefon</label>
+          <input id="tel" name="tel" type="tel" inputmode="tel" placeholder="05XX XXX XX XX" required></div>
+        <div class="fld"><label for="gun">Tercih ettiğiniz gün</label>
+          <input id="gun" name="gun" placeholder="Örn. Cuma öğleden sonra"></div>
+      </div>
+      <div class="fld"><label for="hizmet">Hizmet</label>
+        <select id="hizmet" name="hizmet">
+          <option>Kalıcı Kaş — Kıl Tekniği</option>
+          <option>Kalıcı Dudak Makyajı</option>
+          <option>Kaş Laminasyonu</option>
+          <option>İpek Kirpik</option>
+          <option>Tırnak &amp; Kalıcı Oje</option>
+          <option>Gelin Saçı &amp; Makyajı</option>
+          <option>Saç Tasarımı &amp; Mikro Kaynak</option>
+          <option>Cilt Bakımı</option>
+          <option>Diğer / emin değilim</option>
+        </select></div>
+      <div class="fld"><label for="not">Eklemek istedikleriniz</label>
+        <textarea id="not" name="not" placeholder="İsteğe bağlı"></textarea></div>
+      <button class="pill pill-light" type="submit">WhatsApp'ta gönder
+        <span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 18 18 6M9 6h9v9"/></svg></span>
+      </button>
+      <p class="fnote">Form bilgileri kaydedilmez, doğrudan WhatsApp mesajına dönüşür.</p>
+    </div></form>
+  </div>
+</section>
+
+<!-- ══════════  İLETİŞİM  ══════════ -->
+<section id="iletisim">
+  <div class="w">
+    <div class="shead">
+      <span class="eyebrow lt rv">İletişim</span>
+      <h2 class="rv" style="transition-delay:.06s">Bizi <span class="serif-i">bulun</span></h2>
+    </div>
+    <div class="cgrid">
+      <div class="shell rv"><div class="core">
+        <small>Adres</small><b>Gazi Mustafa Kemal Bulvarı<br>Gazimağusa · KKTC</b>
+        <a class="ln" href="https://www.google.com/maps/search/White+Queen+Hair+Nail+Beauty+Salon+Gazimağusa" target="_blank" rel="noopener">Haritada aç</a>
+      </div></div>
+      <div class="shell rv" style="transition-delay:.05s"><div class="core">
+        <small>Telefon</small><b>0533 870 88 30</b>
+        <a class="ln" href="tel:+905338708830">Arayın</a>
+      </div></div>
+      <div class="shell rv" style="transition-delay:.1s"><div class="core">
+        <small>Instagram</small><b>@whitequeenderyaaltinel</b>
+        <a class="ln" href="https://instagram.com/whitequeenderyaaltinel" target="_blank" rel="noopener">Takip edin</a>
+      </div></div>
+      <div class="shell rv" style="transition-delay:.15s"><div class="core">
+        <small>Çalışma Saatleri</small><b>Pzt – Cmt · 08:00 – 18:30<br>Pazar · 13:00 – 18:30</b>
+        <span style="font-size:.82rem;color:var(--muted)">Perşembe 13:30'da kapanır</span>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="w">
+    <div class="frow2">
+      <div>
+        <div class="fmark">♛ White Queen Salon</div>
+        <p style="color:var(--muted-lt);font-size:.92rem;margin-top:.5rem;max-width:26rem">
+          Hair · Nail · Beauty — Gazi Mustafa Kemal Bulvarı, Gazimağusa</p>
+      </div>
+      <div class="flinks">
+        <a href="#hakkimizda">Hakkımızda</a><a href="#hizmetler">Hizmetler</a>
+        <a href="#galeri">Galeri</a><a href="#randevu">Randevu</a><a href="#iletisim">İletişim</a>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© <span id="yil">2026</span> White Queen Salon. Tüm hakları saklıdır.</span>
+      <span>Site: MY BASKETO LTD</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wafab" href="https://wa.me/905338708830" target="_blank" rel="noopener" aria-label="WhatsApp'tan yazın">
+  <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.87 1.21 3.07c.15.2 2.09 3.2 5.07 4.48.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.8h-.02c-1.75 0-3.47-.47-4.97-1.36l-.36-.21-3.7.97.99-3.6-.23-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.13 1.03 7 2.9a9.83 9.83 0 0 1 2.9 6.99c0 5.45-4.44 9.88-9.9 9.88M20.52 3.45A11.78 11.78 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.88c0 2.1.55 4.14 1.6 5.95L.06 24l6.32-1.66a11.86 11.86 0 0 0 5.67 1.44h.01c6.55 0 11.89-5.33 11.89-11.88 0-3.17-1.24-6.16-3.48-8.4"/></svg>
 </a>
 
-<div class="lb" id="lb" onclick="this.classList.remove('on')"><span class="lbx">&times;</span><img id="lbi" src=""></div>
-
 <script>
-document.getElementById('yil').textContent=new Date().getFullYear();
-addEventListener('scroll',()=>document.getElementById('hd').classList.toggle('s',scrollY>60));
-const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.12});
-document.querySelectorAll('.rv').forEach(e=>io.observe(e));
-document.querySelectorAll('nav a').forEach(a=>a.onclick=()=>{document.getElementById('nv').classList.remove('open');document.body.classList.remove('menu-acik')});
-function tab(i){document.querySelectorAll('.tab').forEach((t,n)=>t.classList.toggle('on',n===i));
-  document.querySelectorAll('.plist').forEach((p,n)=>p.classList.toggle('on',n===i))}
-document.querySelectorAll('.gitem img').forEach(g=>g.parentElement.onclick=()=>{
-  document.getElementById('lbi').src=g.src;document.getElementById('lb').classList.add('on')});
-const F=document.getElementById('f_gonder');
-function wa(){
-  const v=i=>(document.getElementById(i).value||'').trim();
-  let m=`Merhaba, White Queen Salon için randevu almak istiyorum.`;
-  if(v('f_ad'))m+=`\n\nAd Soyad: ${v('f_ad')}`;
-  if(v('f_tel'))m+=`\nTelefon: ${v('f_tel')}`;
-  m+=`\nHizmet: ${v('f_hiz')}`;
-  if(v('f_zaman'))m+=`\nTercih: ${v('f_zaman')}`;
-  if(v('f_not'))m+=`\nNot: ${v('f_not')}`;
-  F.href=`https://wa.me/905338708830?text=${encodeURIComponent(m)}`;
-}
-['f_ad','f_tel','f_hiz','f_zaman','f_not'].forEach(i=>document.getElementById(i).addEventListener('input',wa));
-wa();
+(function(){
+  document.getElementById('yil').textContent = new Date().getFullYear();
+
+  /* ---- yüzen ada menü: açılır VE kapanır ---- */
+  var brg = document.getElementById('brg'), sheet = document.getElementById('sheet');
+  function kapa(){ document.body.classList.remove('nav-acik'); brg.setAttribute('aria-expanded','false'); }
+  function degistir(){
+    var acik = document.body.classList.toggle('nav-acik');
+    brg.setAttribute('aria-expanded', acik ? 'true' : 'false');
+  }
+  brg.addEventListener('click', degistir);
+  brg.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); degistir(); }
+  });
+  sheet.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', kapa); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') kapa(); });
+
+  /* ---- kaydırma girişi: IntersectionObserver ---- */
+  var els = document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(e){ e.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(girisler){
+      girisler.forEach(function(g){
+        if(g.isIntersecting){ g.target.classList.add('in'); io.unobserve(g.target); }
+      });
+    }, { threshold:.12, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(function(e){ io.observe(e); });
+  }
+
+  /* ---- randevu formu → WhatsApp ---- */
+  document.getElementById('frm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = function(id){ return (document.getElementById(id).value || '').trim(); };
+    var satir = [
+      'Merhaba, White Queen Salon\'dan randevu almak istiyorum.',
+      '',
+      'Ad Soyad: ' + v('ad'),
+      'Telefon: ' + v('tel'),
+      'Hizmet: ' + document.getElementById('hizmet').value
+    ];
+    if(v('gun')) satir.push('Tercih: ' + v('gun'));
+    if(v('not')) satir.push('Not: ' + v('not'));
+    window.open('https://wa.me/905338708830?text=' + encodeURIComponent(satir.join('\n')), '_blank');
+  });
+})();
 </script>
 </body>
 </html>
